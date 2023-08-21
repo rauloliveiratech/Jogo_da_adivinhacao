@@ -33,6 +33,12 @@ def jogar_jogo(dificuldade):
             print(f'O número secreto era: {numero_secreto}')
 
 def dificuldade():
+    mensagens_dificuldade = {
+        1: 'Fácil',
+        2: 'Médio',
+        3: 'Difícil'
+    }
+    
     print('''
 *************************
 ***Jogo da adivinhação***
@@ -44,17 +50,30 @@ Selecione um nível de dificuldade, digite o número correspondente :
 3 - Difícil
     ''')
     
-    dif = int(input())
-    
+    while True:
+        try:
+            dif = int(input())
+            if dif in mensagens_dificuldade:
+                print(f'\nVocê selecionou a dificuldade {mensagens_dificuldade[dif]}')
+                break
+            else:
+                print('Opção inválida. Escolha 1 para Fácil, 2 para Médio ou 3 para Difícil.')
+        except ValueError:
+            print('Entrada inválida. Insira um número válido.')
+
     if dif == 1:
         numero_secreto = random.randint(0, 25)
-        print('\nEscolha um número de 1 a 25')
     elif dif == 2:
         numero_secreto = random.randint(0, 75)
-        print('\nEscolha um número de 1 a 75')
     elif dif == 3:
         numero_secreto = random.randint(0, 100)
-        print('\nEscolha um número de 1 a 100')
     return numero_secreto
 
-jogar_jogo(dificuldade)
+def jogar_novamente():
+    resposta = input('Deseja jogar novamente? (s/n): ')
+    return resposta.lower() == 's'
+
+while True:
+    jogar_jogo(dificuldade)
+    if not jogar_novamente():
+        break
