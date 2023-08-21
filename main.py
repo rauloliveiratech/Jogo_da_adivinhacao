@@ -1,20 +1,32 @@
 import random
 
 print('*************************')
-print('***Jogo da adivinhacao***')
+print('***Jogo da adivinhação***')
 print('*************************')
 
 print('\nEscolha um número de 1 a 100\nVocê tem 5 tentativas')
-numero_secreto = random.randint(0,100+1)
+numero_secreto = random.randint(0, 100)
 
-for i in range (0,5):
-    chute = int(input('Chute um número: '))
-    if chute < numero_secreto:
-        print('\nO numero secreto é maior')
-    elif chute > numero_secreto:
-        print('\nO numero secreto é menor')
-    elif chute == numero_secreto:
-        print(' Você acertou !')
-        break
-print('\nSuas tentativas esgotaram, você perdeu !')
-print ('O número secreto é', numero_secreto)
+try:
+    for i in range(5):
+        while True:
+            try:
+                chute = int(input('Chute um número: '))
+                break  # Se a conversão para int funcionar, saia do loop de entrada
+            except ValueError:
+                print('Entrada inválida. Insira um número válido.')
+
+        if chute < numero_secreto:
+            print('\nO número secreto é maior')
+        elif chute > numero_secreto:
+            print('\nO número secreto é menor')
+        else:
+            print('Você acertou!')
+            break
+    else:
+        print('\nSuas tentativas esgotaram, você perdeu!')
+
+except ValueError:
+    print('\nO valor recebido não é válido')
+
+print('\nO número secreto era:', numero_secreto)
