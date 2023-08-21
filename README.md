@@ -6,3 +6,5 @@ Atualizações
 - A função jogar_jogo engloba a lógica do jogo
 - Melhoria de validação de dificuldade
 - Adicionada função para reiniciar o jogo
+- Implementada melhoria de tentativas
+- Subdividir em módulos e organizar o código
