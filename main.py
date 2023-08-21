@@ -1,11 +1,30 @@
 import random
 
-print('*************************')
-print('***Jogo da adivinhação***')
-print('*************************')
+def dificuldade(dif):
+    if dif == 1:
+        numero_secreto = random.randint(0, 25)
+        print('\nEscolha um número de 1 a 25\nVocê tem 5 tentativas')
+    elif dif == 2:
+        numero_secreto = random.randint(0, 75)
+        print('\nEscolha um número de 1 a 75\nVocê tem 5 tentativas')
+    elif dif == 3:
+        numero_secreto = random.randint(0, 100)
+        print('\nEscolha um número de 1 a 100\nVocê tem 5 tentativas')
+    return numero_secreto
 
-print('\nEscolha um número de 1 a 100\nVocê tem 5 tentativas')
-numero_secreto = random.randint(0, 100)
+print('''
+*************************
+***Jogo da adivinhação***
+*************************
+
+Selecione um nível de dificuldade, digite o número correspondente :
+1 - Fácil
+2 - Médio
+3 - Dificil
+      
+''')
+dificuldade_selecionada = int(input())
+numero_secreto = dificuldade(dificuldade_selecionada)
 
 try:
     for i in range(5):
