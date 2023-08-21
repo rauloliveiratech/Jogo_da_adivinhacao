@@ -8,13 +8,13 @@ def obter_chute_valido():
         except ValueError:
             print('Entrada inválida. Insira um número válido.')
 
-def jogar_jogo(dificuldade):
+def jogar_jogo(dificuldade, max_tentativas):
     numero_secreto = dificuldade()
-    tentativas_restantes = 5
+    tentativas_restantes = max_tentativas
 
     print(f'\nVocê tem {tentativas_restantes} tentativas para adivinhar o número.')
 
-    for i in range(5):
+    for i in range(max_tentativas):
         chute = obter_chute_valido()
 
         if chute < numero_secreto:
@@ -63,17 +63,21 @@ Selecione um nível de dificuldade, digite o número correspondente :
 
     if dif == 1:
         numero_secreto = random.randint(0, 25)
+        max_tentativas = 8
     elif dif == 2:
         numero_secreto = random.randint(0, 75)
+        max_tentativas = 6
     elif dif == 3:
         numero_secreto = random.randint(0, 100)
-    return numero_secreto
+        max_tentativas = 4
+    return numero_secreto, max_tentativas
 
 def jogar_novamente():
     resposta = input('Deseja jogar novamente? (s/n): ')
     return resposta.lower() == 's'
 
 while True:
-    jogar_jogo(dificuldade)
+    numero_secreto, max_tentativas = dificuldade()
+    jogar_jogo(numero_secreto, max_tentativas)
     if not jogar_novamente():
         break
